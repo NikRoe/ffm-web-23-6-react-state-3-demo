@@ -39,6 +39,20 @@ export default function App() {
     setMovies(movies.filter((movie) => movie.id !== id));
   }
 
+  function handleToggleLike(id) {
+    // we want to update at least one entry in the movies object --> movies.map()
+    // movie.id === id --> check if current movie's id matches the id
+    // that is passed to the function
+    // ? { ...movie, isLiked: !movie.isLiked } --> if the id matches, return a copy
+    // of the current movie object and change the isLiked value to its opposite
+    // : movie --> otherwise, return the movie as it is
+    setMovies(
+      movies.map((movie) =>
+        movie.id === id ? { ...movie, isLiked: !movie.isLiked } : movie
+      )
+    );
+  }
+
   return (
     <div className="app">
       <h1>Favorite Movies</h1>
@@ -50,6 +64,7 @@ export default function App() {
               isLiked={movie.isLiked}
               id={movie.id}
               onDeleteMovie={handleDeleteMovie}
+              onToggleLike={handleToggleLike}
             />
           </li>
         ))}
