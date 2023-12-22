@@ -37,6 +37,14 @@ export default function App() {
     setMovies(movies.filter((movie) => movie.id !== id));
   }
 
+  function handleToggleLike(id) {
+    setMovies(
+      movies.map((movie) =>
+        movie.id === id ? { ...movie, isLiked: !movie.isLiked } : movie
+      )
+    );
+  }
+
   return (
     <div className="app">
       <h1>Favorite Movies</h1>
@@ -48,6 +56,7 @@ export default function App() {
               isLiked={movie.isLiked}
               id={movie.id}
               onDeleteMovie={handleDeleteMovie}
+              onToggleLike={handleToggleLike}
             />
           </li>
         ))}

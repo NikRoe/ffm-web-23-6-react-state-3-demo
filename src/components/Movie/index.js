@@ -1,6 +1,12 @@
 import "./Movie.css";
 
-export default function Movie({ name, isLiked, id, onDeleteMovie }) {
+export default function Movie({
+  name,
+  isLiked,
+  id,
+  onDeleteMovie,
+  onToggleLike,
+}) {
   return (
     <section className="movie">
       <h2 className={`movie__title${isLiked ? " movie__title--is-liked" : ""}`}>
@@ -11,6 +17,7 @@ export default function Movie({ name, isLiked, id, onDeleteMovie }) {
           className="movie__button"
           type="button"
           title={isLiked ? "unlike movie" : "like movie"}
+          onClick={() => onToggleLike(id)}
         >
           {isLiked ? (
             <span role="img" aria-label="Thumbs up">
