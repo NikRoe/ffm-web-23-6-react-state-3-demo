@@ -34,6 +34,8 @@ export default function App() {
   }
 
   function handleDeleteMovie(id) {
+    // we want to remove at least one movie object from the array --> .filter()
+    // (movie) => movie.id !== id --> return all movies that don't match the id that is passed in
     setMovies(movies.filter((movie) => movie.id !== id));
   }
 
