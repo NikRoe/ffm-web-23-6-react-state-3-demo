@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./styles.css";
 import Movie from "./components/Movie/index.js";
 import Form from "./components/Form";
+import { uid } from "uid";
 
 const initialMovieData = [
   {
@@ -24,6 +25,14 @@ const initialMovieData = [
 export default function App() {
   const [movies, setMovies] = useState(initialMovieData);
 
+  function handleAddMovie(newMovie) {
+    // [] --> we want the new state to be an array
+    // ...movies --> we spread a copy of the existing movies to new state
+    // {id: uid() --> give the new object an id
+    // ...newMovie} --> spread a copy of the newMovie object to the new object
+    setMovies([...movies, { id: uid(), ...newMovie }]);
+  }
+
   return (
     <div className="app">
       <h1>Favorite Movies</h1>
@@ -34,7 +43,7 @@ export default function App() {
           </li>
         ))}
       </ul>
-      <Form />
+      <Form onAddMovie={handleAddMovie} />
     </div>
   );
 }
