@@ -33,13 +33,24 @@ export default function App() {
     setMovies([...movies, { id: uid(), ...newMovie }]);
   }
 
+  function handleDeleteMovie(id) {
+    // we want to remove at least one movie object from the array --> .filter()
+    // (movie) => movie.id !== id --> return all movies that don't match the id that is passed in
+    setMovies(movies.filter((movie) => movie.id !== id));
+  }
+
   return (
     <div className="app">
       <h1>Favorite Movies</h1>
       <ul className="list">
         {movies.map((movie) => (
           <li key={movie.id}>
-            <Movie name={movie.name} isLiked={movie.isLiked} />
+            <Movie
+              name={movie.name}
+              isLiked={movie.isLiked}
+              id={movie.id}
+              onDeleteMovie={handleDeleteMovie}
+            />
           </li>
         ))}
       </ul>
